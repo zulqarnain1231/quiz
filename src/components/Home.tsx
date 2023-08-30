@@ -13,6 +13,7 @@ const Home = () => {
     {
       question: "Question 1",
       keywords: ["Ǹba!", "Hɛ́rɛ!", "sɔ̀gɔma", "ní", "Hɛ́rɛ"],
+      audio: "/audio/q1.mp3",
       iconRight: true,
       questions: [
         { question: "qustion11" },
@@ -24,6 +25,7 @@ const Home = () => {
     {
       question: "Question 2",
       keywords: ["sìra", "Ǹse!", "Áw", "ní"],
+      audio: "/audio/q2.mp3",
       iconRight: false,
       questions: [
         { question: "qustion21" },
@@ -36,6 +38,7 @@ const Home = () => {
       question: "Question 3",
       iconRight: true,
       keywords: ["Ǹba!", "Hɛ́rɛ!", "sɔ̀gɔma", "ní", "Hɛ́rɛ"],
+      audio: "/audio/q3.mp3",
       questions: [
         { question: "qustion31" },
         { question: "qustion32" },
@@ -44,6 +47,7 @@ const Home = () => {
       ],
     },
   ];
+
   const activeQuestion = questionsData[activeQuestionIndex];
 
   const goToNextQuestion = () => {
@@ -56,6 +60,10 @@ const Home = () => {
     if (activeQuestionIndex > 0) {
       setActiveQuestionIndex(activeQuestionIndex - 1);
     }
+  };
+  const playAudio = () => {
+    const audio = new Audio(activeQuestion.audio);
+    audio.play();
   };
   return (
     <div
@@ -97,7 +105,10 @@ const Home = () => {
             {/* quiz questions here */}
             <div className="quiz-container d-flex flex-column align-items-center justify-content-start rounded-3 ">
               <div className="w-100 d-flex align-items-center justify-content-center py-3 ">
-                <button className="d-flex align-items-center justify-content-center rounded-circle border-0 p-2 audio-btn">
+                <button
+                  onClick={playAudio}
+                  className="d-flex align-items-center justify-content-center rounded-circle border-0 p-2 audio-btn"
+                >
                   <HiSpeakerWave size={20} />
                 </button>
               </div>
@@ -147,7 +158,7 @@ const Home = () => {
             </div>
           </div>
           {/* verify button here */}
-          <div className="w-100 d-flex justify-content-start align-items-center ">
+          <div className="next-prev-btns d-flex justify-content-start align-items-center mb-4 ">
             <button onClick={toggleDialouge} className="drawer-close-btn">
               Vérifier
             </button>

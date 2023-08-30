@@ -9,7 +9,7 @@ const Question: React.FC<Props> = ({ iconRight = true, question }) => {
     <div
       className={`w-100 d-flex ${
         iconRight
-          ? "flex-row justify-content-start"
+          ? "flex-row justify-content-between"
           : "flex-row-reverse justify-content-end"
       } align-items-center   py-4 px-2 rounded-2 shadow-lg  question mt-2`}
     >
