@@ -11,7 +11,7 @@ const Question: React.FC<Props> = ({ iconRight = true, question }) => {
         iconRight
           ? "flex-row justify-content-between"
           : "flex-row-reverse justify-content-end"
-      } align-items-center   py-4 px-2 rounded-2 shadow-lg  question mt-2`}
+      } align-items-center   py-4 px-2 rounded-2 shadow-lg  question my-2`}
     >
       {question}
       <BiSolidUser className="text-warning" size={30} />

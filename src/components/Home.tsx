@@ -16,10 +16,39 @@ const Home = () => {
       audio: "/audio/q1.mp3",
       iconRight: true,
       questions: [
-        { question: "qustion11" },
-        { question: "qustion12" },
-        { question: "qustion13" },
-        { question: "qustion14" },
+        {
+          question: (
+            <div className="d-flex align-items-center justify-content-start gap-1">
+              <p>Seriba, í ní</p>
+              <input type="text" />
+            </div>
+          ),
+        },
+        {
+          question: (
+            <div className="d-flex align-items-center justify-content-start gap-1">
+              <input type="text" />
+              <p> Í </p>
+              <input type="text" />
+              <p>sɔ̀gɔma.</p>
+            </div>
+          ),
+        },
+        {
+          question: (
+            <div className="d-flex align-items-center justify-content-start gap-1">
+              <input type="text" />
+              <p> sìra wà? </p>
+            </div>
+          ),
+        },
+        {
+          question: (
+            <div className="d-flex align-items-center justify-content-start gap-1">
+              <input type="text" />
+            </div>
+          ),
+        },
       ],
     },
     {
@@ -28,10 +57,47 @@ const Home = () => {
       audio: "/audio/q2.mp3",
       iconRight: false,
       questions: [
-        { question: "qustion21" },
-        { question: "qustion22" },
-        { question: "qustion23" },
-        { question: "qustion24" },
+        {
+          question: (
+            <div className="d-flex align-items-center justify-content-start gap-1">
+              <input type="text" />
+              <p>ní sɔ̀gɔma.</p>
+            </div>
+          ),
+        },
+        {
+          question: (
+            <div className="d-flex align-items-center justify-content-start gap-1">
+              <input type="text" />
+              <p> Áw ní sɔ̀gɔma.</p>
+            </div>
+          ),
+        },
+        {
+          question: (
+            <div className="d-flex align-items-center justify-content-start gap-1">
+              <p>Ǹba! Á</p>
+              <input type="text" />
+              <p> sɔ̀gɔma..</p>
+            </div>
+          ),
+        },
+        {
+          question: (
+            <div className="d-flex align-items-center justify-content-start gap-1">
+              <p>Hɛ́rɛ </p>
+              <input type="text" />
+              <p> wà?</p>
+            </div>
+          ),
+        },
+        {
+          question: (
+            <div className="d-flex align-items-center justify-content-start gap-1">
+              <p>Hɛ́rɛ ! </p>
+            </div>
+          ),
+        },
       ],
     },
     {
