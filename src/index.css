@@ -91,6 +91,19 @@
 .next-prev-btns {
   width: 95%;
 }
+.error-dialog {
+  width: 300px;
+  border: 2px solid #fc1634;
+}
+.error-cancel-btn {
+  background-color: orangered;
+  color: white;
+  font-size: 16px;
+  font-weight: 400;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+}
 @media (min-width: 1000px) {
   .quiz-container {
     box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,

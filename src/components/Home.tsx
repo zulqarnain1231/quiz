@@ -3,18 +3,15 @@ import Modal from "react-bootstrap/Modal";
 import { FiChevronLeft } from "react-icons/fi";
 import { HiSpeakerWave } from "react-icons/hi2";
 import Question from "./Question";
+import ErrorModal from "./ErrorModal";
 const Home = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [activeQuestionIndex, setActiveQuestionIndex] = useState(0);
-  const toggleDialouge = () => {
-    setIsOpen((prevvalue) => !prevvalue);
-  };
   const questionsData = [
     {
       question: "Question 1",
       keywords: ["Ǹba!", "Hɛ́rɛ!", "sɔ̀gɔma", "ní", "Hɛ́rɛ"],
       audio: "/audio/q1.mp3",
       iconRight: true,
+      inputs: 5,
       questions: [
         {
           question: (
@@ -55,6 +52,7 @@ const Home = () => {
       question: "Question 2",
       keywords: ["sìra", "Ǹse!", "Áw", "ní"],
       audio: "/audio/q2.mp3",
+      inputs: 4,
       iconRight: false,
       questions: [
         {
@@ -103,6 +101,7 @@ const Home = () => {
     {
       question: "Question 3",
       iconRight: true,
+      inputs: 0,
       keywords: ["Ǹba!", "Hɛ́rɛ!", "sɔ̀gɔma", "ní", "Hɛ́rɛ"],
       audio: "/audio/q3.mp3",
       questions: [
@@ -113,7 +112,20 @@ const Home = () => {
       ],
     },
   ];
-
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [errorModal, setErrorModal] = useState<boolean>(false);
+  const [activeQuestionIndex, setActiveQuestionIndex] = useState(0);
+  const initialInputState = questionsData.reduce((acc, question, index) => {
+    acc[`question${index + 1}`] = Array(question.inputs).fill("");
+    return acc;
+  }, {});
+  const [inputs, setInputs] = useState(initialInputState);
+  const handleErrorModalToggle = () => {
+    setErrorModal((prevvalue) => !prevvalue);
+  };
+  const toggleDialouge = () => {
+    setIsOpen((prevvalue) => !prevvalue);
+  };
   const activeQuestion = questionsData[activeQuestionIndex];
 
   const goToNextQuestion = () => {
@@ -130,6 +142,15 @@ const Home = () => {
   const playAudio = () => {
     const audio = new Audio(activeQuestion.audio);
     audio.play();
+    console.log(inputs);
+  };
+  const handleInputChange = (questionIndex, inputIndex, value) => {
+    setInputs((prevInputs) => ({
+      ...prevInputs,
+      [`question${questionIndex + 1}`]: prevInputs[
+        `question${questionIndex + 1}`
+      ].map((val: any, index: number) => (index === inputIndex ? value : val)),
+    }));
   };
   return (
     <div
@@ -191,7 +212,7 @@ const Home = () => {
               <div className="w-100 py-4 px-2">
                 <div className="w-100 d-flex flex-column align-items-center justify-content-start gap-1 keywords-container px-3 py-1">
                   <p className="fw-semibold">Compléter avec ces mots :</p>
-                  <div className="w-100 d-flex align-items-center justify-content-start gap-2">
+                  <div className="w-100 d-flex flex-wrap  align-items-center justify-content-start gap-2">
                     {activeQuestion.keywords.map(
                       (item: string, index: number) => (
                         <span
@@ -225,11 +246,15 @@ const Home = () => {
           </div>
           {/* verify button here */}
           <div className="next-prev-btns d-flex justify-content-start align-items-center mb-4 ">
-            <button onClick={toggleDialouge} className="drawer-close-btn">
+            <button
+              onClick={handleErrorModalToggle}
+              className="drawer-close-btn"
+            >
               Vérifier
             </button>
           </div>
         </div>
+        <ErrorModal open={errorModal} setOpen={handleErrorModalToggle} />
       </Modal>
     </div>
   );
