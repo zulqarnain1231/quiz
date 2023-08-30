@@ -60,3 +60,37 @@
   border: none;
   border-radius: 6px;
 }
+.quiz-container {
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+  width: 95%;
+  margin: 0 auto;
+}
+.audio-btn {
+  background-color: #f7cf30;
+  color: white;
+}
+.quiz-questions-container {
+  height: 350px;
+  border-top: 3px solid #fc1634;
+  border-bottom: 3px solid #fc1634;
+}
+.keywords-container {
+  border: 2px solid #ff8c1d;
+}
+.bg-orange-seconday {
+  background-color: #fc1634;
+}
+.question {
+  border: 2px solid #fc1634;
+}
+@media (min-width: 1000px) {
+  .quiz-container {
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+      rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+      rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+    width: 90%;
+    margin: 0 auto;
+  }
+}

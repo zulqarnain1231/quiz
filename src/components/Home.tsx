@@ -1,10 +1,58 @@
 import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { FiChevronLeft } from "react-icons/fi";
+import { HiSpeakerWave } from "react-icons/hi2";
+import Question from "./Question";
 const Home = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [activeQuestionIndex, setActiveQuestionIndex] = useState(0);
   const toggleDialouge = () => {
     setIsOpen((prevvalue) => !prevvalue);
+  };
+  const questionsData = [
+    {
+      question: "Question 1",
+      iconRight: true,
+      questions: [
+        { question: "qustion11" },
+        { question: "qustion12" },
+        { question: "qustion13" },
+        { question: "qustion14" },
+      ],
+    },
+    {
+      question: "Question 2",
+      iconRight: false,
+      questions: [
+        { question: "qustion21" },
+        { question: "qustion22" },
+        { question: "qustion23" },
+        { question: "qustion24" },
+      ],
+    },
+    {
+      question: "Question 3",
+      iconRight: true,
+      questions: [
+        { question: "qustion31" },
+        { question: "qustion32" },
+        { question: "qustion33" },
+        { question: "qustion34" },
+      ],
+    },
+  ];
+  const activeQuestion = questionsData[activeQuestionIndex];
+
+  const goToNextQuestion = () => {
+    if (activeQuestionIndex < questionsData.length - 1) {
+      setActiveQuestionIndex(activeQuestionIndex + 1);
+    }
+  };
+
+  const goToPreviousQuestion = () => {
+    if (activeQuestionIndex > 0) {
+      setActiveQuestionIndex(activeQuestionIndex - 1);
+    }
   };
   return (
     <div
@@ -20,7 +68,7 @@ const Home = () => {
       </button>
       {/* dialouge here */}
       <Modal show={isOpen} onHide={toggleDialouge} fullscreen={true}>
-        <div className="w-100 h-100 d-flex flex-column align-items-center justify-content-start overflow-y-auto ">
+        <div className="w-100 h-100 d-flex flex-column align-items-center justify-content-start gap-4 overflow-y-auto ">
           {/* header here */}
           <div className="dialogue-header">
             {" "}
@@ -33,18 +81,63 @@ const Home = () => {
             </button>
           </div>
 
-          <Modal.Body>
-            <div className="w-100 h-100 d-flex flex-column align-items-center justify-content-start overflow-y-auto ">
-              {/* dialogue title here */}
-              <div className="dialogue-title">
-                <h5 className="text-white fw-medium ">
-                  Ecoutez et completez ce dialogue
-                </h5>
+          <div className="w-100 h-100 d-flex flex-column  gap-4 align-items-center justify-content-start overflow-y-auto ">
+            {/* dialogue title here */}
+            <div className="dialogue-title">
+              <h5 className="text-white fw-medium ">
+                Ecoutez et completez ce dialogue
+              </h5>
+            </div>
+            {/* quiz questions here */}
+            <div className="quiz-container d-flex flex-column align-items-center justify-content-start rounded-3 ">
+              <div className="w-100 d-flex align-items-center justify-content-center py-3 ">
+                <button className="d-flex align-items-center justify-content-center rounded-circle border-0 p-2 audio-btn">
+                  <HiSpeakerWave size={20} />
+                </button>
+              </div>
+              {/* quiz questions main div */}
+              <div className="w-100 d-flex flex-column align-items-center justify-content-start overflow-y-auto quiz-questions-container px-lg-4 px-1">
+                {activeQuestion.questions.map((item: any, index: number) => (
+                  <Question
+                    question={item.question}
+                    iconRight={index % 2 == 0 || index == 0}
+                  />
+                ))}
+              </div>
+              {/* keywords div here */}
+              <div className="w-100 py-4 px-2">
+                <div className="w-100 d-flex flex-column align-items-center justify-content-start gap-1 keywords-container px-3 py-1">
+                  <p className="fw-semibold">Compléter avec ces mots :</p>
+                  <div className="w-100 d-flex align-items-center justify-content-start gap-2">
+                    {[1, 2, 3, 4].map((item: any, index: number) => (
+                      <span
+                        key={index}
+                        className="rounded-2 py-2 px-3 text-white fw-semibold  bg-orange-seconday"
+                      >
+                        sìra
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
-          </Modal.Body>
-
-          <div className="w-100 d-flex justify-content-end  align-items-center ">
+            <div className="w-100">
+              <button
+                onClick={goToPreviousQuestion}
+                disabled={activeQuestionIndex === 0}
+              >
+                Previous
+              </button>
+              <button
+                onClick={goToNextQuestion}
+                disabled={activeQuestionIndex === questionsData.length - 1}
+              >
+                Next
+              </button>
+            </div>
+          </div>
+          {/* verify button here */}
+          <div className="w-100 d-flex justify-content-start align-items-center ">
             <button onClick={toggleDialouge} className="drawer-close-btn">
               Vérifier
             </button>
