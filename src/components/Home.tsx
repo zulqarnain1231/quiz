@@ -4,6 +4,7 @@ import { FiChevronLeft } from "react-icons/fi";
 import { HiSpeakerWave } from "react-icons/hi2";
 import Question from "./Question";
 import ErrorModal from "./ErrorModal";
+import QuizProgressBar from "./QuizProgressBar";
 const Home = () => {
   const questionsData = [
     {
@@ -157,21 +158,21 @@ const Home = () => {
       style={{ minHeight: "100vh" }}
       className="w-100 min-h-100 d-flex flex-column  align-items-center justify-content-center"
     >
-      <button
+      {/* <button
         onClick={toggleDialouge}
         style={{ color: "white" }}
         className="p-2 rounded-2 border-0 mainGradient"
       >
         Open Dialogue
-      </button>
+      </button> */}
       {/* dialouge here */}
-      <Modal show={isOpen} onHide={toggleDialouge} fullscreen={true}>
+      <Modal show={true} onHide={toggleDialouge} fullscreen={true}>
         <div
           style={{ maxHeight: "100vh" }}
           className="w-100 d-flex flex-column align-items-center justify-content-start gap-4 overflow-y-auto "
         >
           {/* header here */}
-          <div className="dialogue-header">
+          {/* <div className="dialogue-header">
             {" "}
             <img className="object-contain logo" src={"/logo.png"} alt="" />
             <button
@@ -180,6 +181,9 @@ const Home = () => {
             >
               <FiChevronLeft size={20} />
             </button>
+          </div> */}
+          <div className="w-100">
+            <QuizProgressBar progress={11} totalQuestions={45} />
           </div>
 
           <div className="w-100 d-flex flex-column  gap-4 align-items-center justify-content-start ">
