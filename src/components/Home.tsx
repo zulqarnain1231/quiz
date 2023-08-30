@@ -12,6 +12,7 @@ const Home = () => {
   const questionsData = [
     {
       question: "Question 1",
+      keywords: ["Ǹba!", "Hɛ́rɛ!", "sɔ̀gɔma", "ní", "Hɛ́rɛ"],
       iconRight: true,
       questions: [
         { question: "qustion11" },
@@ -22,6 +23,7 @@ const Home = () => {
     },
     {
       question: "Question 2",
+      keywords: ["sìra", "Ǹse!", "Áw", "ní"],
       iconRight: false,
       questions: [
         { question: "qustion21" },
@@ -33,6 +35,7 @@ const Home = () => {
     {
       question: "Question 3",
       iconRight: true,
+      keywords: ["Ǹba!", "Hɛ́rɛ!", "sɔ̀gɔma", "ní", "Hɛ́rɛ"],
       questions: [
         { question: "qustion31" },
         { question: "qustion32" },
@@ -68,7 +71,10 @@ const Home = () => {
       </button>
       {/* dialouge here */}
       <Modal show={isOpen} onHide={toggleDialouge} fullscreen={true}>
-        <div className="w-100 h-100 d-flex flex-column align-items-center justify-content-start gap-4 overflow-y-auto ">
+        <div
+          style={{ maxHeight: "100vh" }}
+          className="w-100 d-flex flex-column align-items-center justify-content-start gap-4 overflow-y-auto "
+        >
           {/* header here */}
           <div className="dialogue-header">
             {" "}
@@ -81,7 +87,7 @@ const Home = () => {
             </button>
           </div>
 
-          <div className="w-100 h-100 d-flex flex-column  gap-4 align-items-center justify-content-start overflow-y-auto ">
+          <div className="w-100 d-flex flex-column  gap-4 align-items-center justify-content-start ">
             {/* dialogue title here */}
             <div className="dialogue-title">
               <h5 className="text-white fw-medium ">
@@ -109,30 +115,34 @@ const Home = () => {
                 <div className="w-100 d-flex flex-column align-items-center justify-content-start gap-1 keywords-container px-3 py-1">
                   <p className="fw-semibold">Compléter avec ces mots :</p>
                   <div className="w-100 d-flex align-items-center justify-content-start gap-2">
-                    {[1, 2, 3, 4].map((item: any, index: number) => (
-                      <span
-                        key={index}
-                        className="rounded-2 py-2 px-3 text-white fw-semibold  bg-orange-seconday"
-                      >
-                        sìra
-                      </span>
-                    ))}
+                    {activeQuestion.keywords.map(
+                      (item: string, index: number) => (
+                        <span
+                          key={index}
+                          className="rounded-2 py-2 px-3 text-white fw-semibold  bg-orange-seconday"
+                        >
+                          {item}
+                        </span>
+                      )
+                    )}
                   </div>
                 </div>
               </div>
             </div>
-            <div className="w-100">
+            <div className="d-flex align-items-center justify-content-between next-prev-btns">
               <button
                 onClick={goToPreviousQuestion}
                 disabled={activeQuestionIndex === 0}
+                className="p-3 rounded-circle bg-warning border-0 text-white fw-semibold navigation-btn"
               >
-                Previous
+                Préc
               </button>
               <button
                 onClick={goToNextQuestion}
                 disabled={activeQuestionIndex === questionsData.length - 1}
+                className="p-3 rounded-circle bg-warning border-0 text-white fw-semibold navigation-btn"
               >
-                Next
+                Suiv
               </button>
             </div>
           </div>

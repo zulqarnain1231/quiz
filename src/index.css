@@ -85,6 +85,12 @@
 .question {
   border: 2px solid #fc1634;
 }
+.navigation-btn:disabled {
+  opacity: 0;
+}
+.next-prev-btns {
+  width: 95%;
+}
 @media (min-width: 1000px) {
   .quiz-container {
     box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
@@ -92,5 +98,8 @@
       rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
     width: 90%;
     margin: 0 auto;
+  }
+  .next-prev-btns {
+    width: 90%;
   }
 }
