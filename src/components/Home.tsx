@@ -142,7 +142,7 @@ const Home = () => {
   const playAudio = () => {
     const audio = new Audio(activeQuestion.audio);
     audio.play();
-    console.log(inputs);
+    // console.log(inputs);
   };
   const handleInputChange = (questionIndex, inputIndex, value) => {
     setInputs((prevInputs) => ({
@@ -247,7 +247,11 @@ const Home = () => {
           {/* verify button here */}
           <div className="next-prev-btns d-flex justify-content-start align-items-center mb-4 ">
             <button
-              onClick={handleErrorModalToggle}
+              onClick={() => {
+                setErrorModal(true);
+                const audio = new Audio("/audio/wrong.mp3");
+                audio.play();
+              }}
               className="drawer-close-btn"
             >
               Vérifier
