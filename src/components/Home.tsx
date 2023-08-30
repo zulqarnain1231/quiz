@@ -217,6 +217,9 @@ const Home = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [errorModal, setErrorModal] = useState<boolean>(false);
   const [activeQuestionIndex, setActiveQuestionIndex] = useState(0);
+  const incrementProgressBar = () => {
+    setProgress((prevvalue) => prevvalue + 1);
+  };
   // const initialInputState = questionsData.reduce((acc, question, index) => {
   //   acc[`question${index + 1}`] = Array(question.inputs).fill("");
   //   return acc;
@@ -228,7 +231,10 @@ const Home = () => {
   const toggleDialouge = () => {
     setIsOpen((prevvalue) => !prevvalue);
   };
-  const activeQuestion = questionsData[activeQuestionIndex];
+  const [activeQuestion, setActiveQuestion] = useState(
+    questionsData[activeQuestionIndex]
+  );
+
   const [activeQuestionKeyWords, setActiveQuestionKeyWords] = useState(
     activeQuestion.keywords
   );
@@ -236,44 +242,12 @@ const Home = () => {
   const goToNextQuestion = () => {
     if (activeQuestionIndex < questionsData.length - 1) {
       setActiveQuestionIndex(activeQuestionIndex + 1);
-      setProgress(0);
-      setQ1Inputs({
-        blank1: "",
-        blank2: "",
-        blank3: "",
-        blank4: "",
-        blank5: "",
-      });
-      setQ2Inputs({
-        blank1: "",
-        blank2: "",
-        blank3: "",
-        blank4: "",
-        blank5: "",
-      });
-      setCurrentBlankIndex(1);
     }
   };
 
   const goToPreviousQuestion = () => {
     if (activeQuestionIndex > 0) {
       setActiveQuestionIndex(activeQuestionIndex - 1);
-      setProgress(0);
-      setQ1Inputs({
-        blank1: "",
-        blank2: "",
-        blank3: "",
-        blank4: "",
-        blank5: "",
-      });
-      setQ2Inputs({
-        blank1: "",
-        blank2: "",
-        blank3: "",
-        blank4: "",
-        blank5: "",
-      });
-      setCurrentBlankIndex(1);
     }
   };
   const playAudio = () => {
@@ -281,14 +255,7 @@ const Home = () => {
     audio.play();
     // console.log(inputs);
   };
-  // const handleInputChange = (questionIndex, inputIndex, value) => {
-  //   setInputs((prevInputs) => ({
-  //     ...prevInputs,
-  //     [`question${questionIndex + 1}`]: prevInputs[
-  //       `question${questionIndex + 1}`
-  //     ].map((val: any, index: number) => (index === inputIndex ? value : val)),
-  //   }));
-  // };
+
   const [currentBlankIndex, setCurrentBlankIndex] = useState(1);
 
   const handleKeyWord = (item: string) => {
@@ -298,12 +265,14 @@ const Home = () => {
         currentBlankIndex === 3 ||
         currentBlankIndex === 4 ||
         currentBlankIndex === 5) &&
-      activeQuestion.question == "Question1"
+      activeQuestion.question === "Question1"
         ? q1Inputs
         : q2Inputs;
-    const newInputs = { ...currentQuestionInputs };
 
-    newInputs[`blank${currentBlankIndex}`] = item;
+    const newInputs = { ...currentQuestionInputs };
+    const inputName = `blank${currentBlankIndex}`;
+
+    newInputs[inputName] = item;
 
     const nextBlankIndex = Math.min(currentBlankIndex + 1, 5);
     setCurrentBlankIndex(nextBlankIndex);
@@ -314,17 +283,41 @@ const Home = () => {
         currentBlankIndex === 3 ||
         currentBlankIndex === 4 ||
         currentBlankIndex === 5) &&
-      activeQuestion.question == "Question1"
+      activeQuestion.question === "Question1"
     ) {
       setQ1Inputs(newInputs);
     } else {
       setQ2Inputs(newInputs);
     }
-    const filterdKeywords = activeQuestionKeyWords?.filter(
-      (keyword) => keyword != item
+
+    const filteredKeywords = activeQuestionKeyWords?.filter(
+      (keyword) => keyword !== item
     );
-    setActiveQuestionKeyWords(filterdKeywords);
+    setActiveQuestionKeyWords(filteredKeywords);
+    incrementProgressBar();
   };
+
+  useEffect(() => {
+    setActiveQuestion(questionsData[activeQuestionIndex]);
+    setActiveQuestionKeyWords(questionsData[activeQuestionIndex].keywords);
+    setProgress(0);
+    console.log(activeQuestion);
+    setQ1Inputs({
+      blank1: "",
+      blank2: "",
+      blank3: "",
+      blank4: "",
+      blank5: "",
+    });
+    setQ2Inputs({
+      blank1: "",
+      blank2: "",
+      blank3: "",
+      blank4: "",
+      blank5: "",
+    });
+    setCurrentBlankIndex(1);
+  }, [activeQuestionIndex]);
   return (
     <div
       style={{ minHeight: "100vh" }}
@@ -357,7 +350,7 @@ const Home = () => {
           <div className="w-100">
             <QuizProgressBar
               progress={progress}
-              totalQuestions={activeQuestion.questions.length}
+              totalQuestions={activeQuestion.inputs}
             />
           </div>
 
@@ -382,6 +375,7 @@ const Home = () => {
               <div className="w-100 d-flex flex-column align-items-center justify-content-start overflow-y-auto quiz-questions-container px-lg-4 px-1">
                 {activeQuestion.questions.map((item: any, index: number) => (
                   <Question
+                    key={index}
                     icon={item.icon}
                     question={item.question}
                     iconRight={index % 2 == 0 || index == 0}
@@ -413,6 +407,7 @@ const Home = () => {
                           blank5: "",
                         });
                         setCurrentBlankIndex(1);
+                        setProgress(0);
                       }}
                     >
                       {" "}
