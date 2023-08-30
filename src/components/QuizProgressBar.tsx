@@ -14,7 +14,7 @@ const QuizProgressBar: React.FC<Props> = ({
   const percentNumber = parseFloat(percent);
   return (
     <div className="d-flex align-items-center justify-content-center gap-4 progress-bar-container">
-      <button className="d-flex align-items-center justify-content-center rounded-circle bg-warning text-white p-2 border-0 ">
+      <button className="d-flex align-items-center justify-content-center rounded-circle bg-danger text-white p-2 border-0 ">
         <RxCross1 size={20} />
       </button>
       <div className="w-100">

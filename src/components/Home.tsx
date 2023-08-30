@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { FiChevronLeft } from "react-icons/fi";
+import { BiSolidUser } from "react-icons/bi";
 import { HiSpeakerWave } from "react-icons/hi2";
+import { DiAndroid } from "react-icons/di";
 import Question from "./Question";
 import ErrorModal from "./ErrorModal";
 import QuizProgressBar from "./QuizProgressBar";
@@ -9,6 +11,7 @@ const Home = () => {
   const questionsData = [
     {
       question: "Question 1",
+
       keywords: ["Ǹba!", "Hɛ́rɛ!", "sɔ̀gɔma", "ní", "Hɛ́rɛ"],
       audio: "/audio/q1.mp3",
       iconRight: true,
@@ -21,16 +24,18 @@ const Home = () => {
               <input type="text" />
             </div>
           ),
+          icon: <BiSolidUser className="text-warning" size={30} />,
         },
         {
           question: (
-            <div className="d-flex align-items-center justify-content-start gap-1">
+            <div className="d-flex flex-wrap align-items-center justify-content-start gap-1">
               <input type="text" />
               <p> Í </p>
               <input type="text" />
               <p>sɔ̀gɔma.</p>
             </div>
           ),
+          icon: <DiAndroid className="text-warning flex-shrink-0 " size={30} />,
         },
         {
           question: (
@@ -39,6 +44,7 @@ const Home = () => {
               <p> sìra wà? </p>
             </div>
           ),
+          icon: <BiSolidUser className="text-warning" size={30} />,
         },
         {
           question: (
@@ -46,6 +52,7 @@ const Home = () => {
               <input type="text" />
             </div>
           ),
+          icon: <DiAndroid className="text-warning" size={30} />,
         },
       ],
     },
@@ -63,6 +70,7 @@ const Home = () => {
               <p>ní sɔ̀gɔma.</p>
             </div>
           ),
+          icon: <DiAndroid className="text-warning" size={30} />,
         },
         {
           question: (
@@ -71,6 +79,7 @@ const Home = () => {
               <p> Áw ní sɔ̀gɔma.</p>
             </div>
           ),
+          icon: <DiAndroid className="text-warning" size={30} />,
         },
         {
           question: (
@@ -80,6 +89,7 @@ const Home = () => {
               <p> sɔ̀gɔma..</p>
             </div>
           ),
+          icon: <DiAndroid className="text-warning" size={30} />,
         },
         {
           question: (
@@ -89,6 +99,7 @@ const Home = () => {
               <p> wà?</p>
             </div>
           ),
+          icon: <DiAndroid className="text-warning" size={30} />,
         },
         {
           question: (
@@ -96,6 +107,7 @@ const Home = () => {
               <p>Hɛ́rɛ ! </p>
             </div>
           ),
+          icon: <BiSolidUser className="text-warning" size={30} />,
         },
       ],
     },
@@ -103,16 +115,28 @@ const Home = () => {
       question: "Question 3",
       iconRight: true,
       inputs: 0,
-      keywords: ["Ǹba!", "Hɛ́rɛ!", "sɔ̀gɔma", "ní", "Hɛ́rɛ"],
       audio: "/audio/q3.mp3",
       questions: [
-        { question: "qustion31" },
-        { question: "qustion32" },
-        { question: "qustion33" },
-        { question: "qustion34" },
+        {
+          question: "qustion31",
+          icon: <BiSolidUser className="text-warning" size={30} />,
+        },
+        {
+          question: "qustion32",
+          icon: <BiSolidUser className="text-warning" size={30} />,
+        },
+        {
+          question: "qustion33",
+          icon: <BiSolidUser className="text-warning" size={30} />,
+        },
+        {
+          question: "qustion34",
+          icon: <DiAndroid className="text-warning" size={30} />,
+        },
       ],
     },
   ];
+  const [progress, setProgress] = useState(0);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [errorModal, setErrorModal] = useState<boolean>(false);
   const [activeQuestionIndex, setActiveQuestionIndex] = useState(0);
@@ -207,6 +231,7 @@ const Home = () => {
               <div className="w-100 d-flex flex-column align-items-center justify-content-start overflow-y-auto quiz-questions-container px-lg-4 px-1">
                 {activeQuestion.questions.map((item: any, index: number) => (
                   <Question
+                    icon={item.icon}
                     question={item.question}
                     iconRight={index % 2 == 0 || index == 0}
                   />
@@ -217,7 +242,7 @@ const Home = () => {
                 <div className="w-100 d-flex flex-column align-items-center justify-content-start gap-1 keywords-container px-3 py-1">
                   <p className="fw-semibold">Compléter avec ces mots :</p>
                   <div className="w-100 d-flex flex-wrap  align-items-center justify-content-start gap-2">
-                    {activeQuestion.keywords.map(
+                    {activeQuestion?.keywords?.map(
                       (item: string, index: number) => (
                         <span
                           key={index}

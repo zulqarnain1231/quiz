@@ -104,24 +104,7 @@
   border-radius: 6px;
   padding: 6px 10px;
 }
-.quiz_header .progress_bar {
-  width: 100%;
-  height: 20px;
-  border-radius: 23px;
-  background-color: #eaeaea;
-  position: relative;
-}
 
-.progress_bar .progress_track {
-  width: var(--progress-width, 0%);
-  height: 100%;
-  border-radius: 23px;
-  background-color: #df5411;
-  position: absolute;
-  top: 0;
-  left: 0;
-  transition: width 0.3s ease;
-}
 .setting_btn {
   font-size: 30px;
   color: #d9d9d9;
