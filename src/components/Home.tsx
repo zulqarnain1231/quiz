@@ -18,28 +18,35 @@ type Blanks = {
 };
 
 const Home = () => {
-  const [q1Inputs, setQ1Inputs] = useState<Blanks>({
+  const [qInputs, setQInputs] = useState<Blanks>({
     blank1: "",
     blank2: "",
     blank3: "",
     blank4: "",
     blank5: "",
   });
-  const [q2Inputs, setQ2Inputs] = useState<Blanks>({
-    blank1: "",
-    blank2: "",
-    blank3: "",
-    blank4: "",
-    blank5: "",
-  });
-  const handleQ2Inputs = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setQ2Inputs({ ...q2Inputs, [name]: value });
-  };
-  const handleQ1Inputs = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setQ1Inputs({ ...q1Inputs, [name]: value });
-  };
+  // const [q1Inputs, setQ1Inputs] = useState<Blanks>({
+  //   blank1: "",
+  //   blank2: "",
+  //   blank3: "",
+  //   blank4: "",
+  //   blank5: "",
+  // });
+  // const [q2Inputs, setQ2Inputs] = useState<Blanks>({
+  //   blank1: "",
+  //   blank2: "",
+  //   blank3: "",
+  //   blank4: "",
+  //   blank5: "",
+  // });
+  // const handleQ2Inputs = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const { name, value } = e.target;
+  //   setQ2Inputs({ ...q2Inputs, [name]: value });
+  // };
+  // const handleQ1Inputs = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const { name, value } = e.target;
+  //   setQ1Inputs({ ...q1Inputs, [name]: value });
+  // };
   const questionsData = [
     {
       question: "Question1",
@@ -50,65 +57,31 @@ const Home = () => {
       inputs: 5,
       questions: [
         {
-          question: (
-            <div className="d-flex align-items-center justify-content-start gap-1">
-              <p>Seriba, í ní</p>
-              <input
-                name="blank1"
-                value={q1Inputs.blank1}
-                onChange={handleQ1Inputs}
-                type="text"
-              />
-            </div>
-          ),
+          inputs: 1,
+          inputFirst: true,
+          input1Name: "blank1",
+          text1: "Seriba, í ní",
           icon: <BiSolidUser className="text-warning" size={30} />,
         },
         {
-          question: (
-            <div className="d-flex flex-wrap align-items-center justify-content-start gap-1">
-              <input
-                name="blank2"
-                value={q1Inputs.blank2}
-                onChange={handleQ1Inputs}
-                type="text"
-              />
-              <p> Í </p>
-              <input
-                name="blank3"
-                value={q1Inputs.blank3}
-                onChange={handleQ1Inputs}
-                type="text"
-              />
-              <p>sɔ̀gɔma.</p>
-            </div>
-          ),
+          inputs: 2,
+          input1Name: "blank2",
+          input2Name: "blank3",
+          text1: "Í",
+          text2: "sɔ̀gɔma.",
           icon: <DiAndroid className="text-warning flex-shrink-0 " size={30} />,
         },
         {
-          question: (
-            <div className="d-flex align-items-center justify-content-start gap-1">
-              <input
-                name="blank4"
-                value={q1Inputs.blank4}
-                onChange={handleQ1Inputs}
-                type="text"
-              />
-              <p> sìra wà? </p>
-            </div>
-          ),
+          inputs: 1,
+          inputFirst: true,
+          input1Name: "blank4",
+          text1: "sìra wà?",
           icon: <BiSolidUser className="text-warning" size={30} />,
         },
         {
-          question: (
-            <div className="d-flex align-items-center justify-content-start gap-1">
-              <input
-                name="blank5"
-                value={q1Inputs.blank5}
-                onChange={handleQ1Inputs}
-                type="text"
-              />
-            </div>
-          ),
+          inputs: 1,
+          inputFirst: true,
+          input1Name: "blank5",
           icon: <DiAndroid className="text-warning" size={30} />,
         },
       ],
@@ -121,97 +94,69 @@ const Home = () => {
       iconRight: false,
       questions: [
         {
-          question: (
-            <div className="d-flex align-items-center justify-content-start gap-1">
-              <input
-                name="blank1"
-                value={q2Inputs.blank1}
-                onChange={handleQ2Inputs}
-                type="text"
-              />
-              <p>ní sɔ̀gɔma.</p>
-            </div>
-          ),
+          inputs: 1,
+          inputFirst: true,
+          input1Name: "blank1",
+          text1: "ní sɔ̀gɔma.",
           icon: <DiAndroid className="text-warning" size={30} />,
         },
         {
-          question: (
-            <div className="d-flex align-items-center justify-content-start gap-1">
-              <input
-                name="blank2"
-                value={q2Inputs.blank2}
-                onChange={handleQ2Inputs}
-                type="text"
-              />
-              <p> Áw ní sɔ̀gɔma.</p>
-            </div>
-          ),
+          inputs: 1,
+          inputFirst: true,
+          input1Name: "blank2",
+          text1: "ní sɔ̀gɔma.",
           icon: <DiAndroid className="text-warning" size={30} />,
         },
         {
-          question: (
-            <div className="d-flex align-items-center justify-content-start gap-1">
-              <p>Ǹba! Á</p>
-              <input
-                name="blank3"
-                value={q2Inputs.blank3}
-                onChange={handleQ2Inputs}
-                type="text"
-              />
-              <p> sɔ̀gɔma..</p>
-            </div>
-          ),
+          inputs: 1,
+          inputFirst: false,
+          input1Name: "blank3",
+          text1: "Ǹba! Á",
+          text2: "sɔ̀gɔma..",
+          inputMiddle: true,
           icon: <DiAndroid className="text-warning" size={30} />,
         },
         {
-          question: (
-            <div className="d-flex align-items-center justify-content-start gap-1">
-              <p>Hɛ́rɛ </p>
-              <input
-                name="blank4"
-                value={q2Inputs.blank4}
-                onChange={handleQ2Inputs}
-                type="text"
-              />
-              <p> wà?</p>
-            </div>
-          ),
+          inputs: 1,
+          inputFirst: false,
+          input1Name: "blank4",
+          text1: "Hɛ́rɛ",
+          text2: "wà?",
+          inputMiddle: true,
           icon: <DiAndroid className="text-warning" size={30} />,
         },
         {
-          question: (
-            <div className="d-flex align-items-center justify-content-start gap-1">
-              <p>Hɛ́rɛ ! </p>
-            </div>
-          ),
+          inputs: 0,
+          inputFirst: false,
+          text1: "Hɛ́rɛ ! ",
           icon: <BiSolidUser className="text-warning" size={30} />,
         },
       ],
     },
-    {
-      question: "Question3",
-      iconRight: true,
-      inputs: 0,
-      audio: "/audio/q3.mp3",
-      questions: [
-        {
-          question: "qustion31",
-          icon: <BiSolidUser className="text-warning" size={30} />,
-        },
-        {
-          question: "qustion32",
-          icon: <BiSolidUser className="text-warning" size={30} />,
-        },
-        {
-          question: "qustion33",
-          icon: <BiSolidUser className="text-warning" size={30} />,
-        },
-        {
-          question: "qustion34",
-          icon: <DiAndroid className="text-warning" size={30} />,
-        },
-      ],
-    },
+    // {
+    //   question: "Question3",
+    //   iconRight: true,
+    //   inputs: 0,
+    //   audio: "/audio/q3.mp3",
+    //   questions: [
+    //     {
+    //       question: "qustion31",
+    //       icon: <BiSolidUser className="text-warning" size={30} />,
+    //     },
+    //     {
+    //       question: "qustion32",
+    //       icon: <BiSolidUser className="text-warning" size={30} />,
+    //     },
+    //     {
+    //       question: "qustion33",
+    //       icon: <BiSolidUser className="text-warning" size={30} />,
+    //     },
+    //     {
+    //       question: "qustion34",
+    //       icon: <DiAndroid className="text-warning" size={30} />,
+    //     },
+    //   ],
+    // },
   ];
   const [progress, setProgress] = useState(0);
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -220,10 +165,6 @@ const Home = () => {
   const incrementProgressBar = () => {
     setProgress((prevvalue) => prevvalue + 1);
   };
-  // const initialInputState = questionsData.reduce((acc, question, index) => {
-  //   acc[`question${index + 1}`] = Array(question.inputs).fill("");
-  //   return acc;
-  // }, {});
 
   const handleErrorModalToggle = () => {
     setErrorModal((prevvalue) => !prevvalue);
@@ -253,21 +194,12 @@ const Home = () => {
   const playAudio = () => {
     const audio = new Audio(activeQuestion.audio);
     audio.play();
-    // console.log(inputs);
   };
 
   const [currentBlankIndex, setCurrentBlankIndex] = useState(1);
 
   const handleKeyWord = (item: string) => {
-    const currentQuestionInputs =
-      (currentBlankIndex === 1 ||
-        currentBlankIndex === 2 ||
-        currentBlankIndex === 3 ||
-        currentBlankIndex === 4 ||
-        currentBlankIndex === 5) &&
-      activeQuestion.question === "Question1"
-        ? q1Inputs
-        : q2Inputs;
+    const currentQuestionInputs = qInputs;
 
     const newInputs = { ...currentQuestionInputs };
     const inputName = `blank${currentBlankIndex}`;
@@ -276,19 +208,7 @@ const Home = () => {
 
     const nextBlankIndex = Math.min(currentBlankIndex + 1, 5);
     setCurrentBlankIndex(nextBlankIndex);
-
-    if (
-      (currentBlankIndex === 1 ||
-        currentBlankIndex === 2 ||
-        currentBlankIndex === 3 ||
-        currentBlankIndex === 4 ||
-        currentBlankIndex === 5) &&
-      activeQuestion.question === "Question1"
-    ) {
-      setQ1Inputs(newInputs);
-    } else {
-      setQ2Inputs(newInputs);
-    }
+    setQInputs(newInputs);
 
     const filteredKeywords = activeQuestionKeyWords?.filter(
       (keyword) => keyword !== item
@@ -298,26 +218,28 @@ const Home = () => {
   };
 
   useEffect(() => {
-    setActiveQuestion(questionsData[activeQuestionIndex]);
-    setActiveQuestionKeyWords(questionsData[activeQuestionIndex].keywords);
-    setProgress(0);
+    const newActiveQuestion = questionsData[activeQuestionIndex];
+    setActiveQuestion(newActiveQuestion);
+    setActiveQuestionKeyWords(newActiveQuestion.keywords);
     console.log(activeQuestion);
-    setQ1Inputs({
+    setProgress(0);
+    setQInputs({
       blank1: "",
       blank2: "",
       blank3: "",
       blank4: "",
       blank5: "",
     });
-    setQ2Inputs({
-      blank1: "",
-      blank2: "",
-      blank3: "",
-      blank4: "",
-      blank5: "",
-    });
+    // setQ2Inputs({
+    //   blank1: "",
+    //   blank2: "",
+    //   blank3: "",
+    //   blank4: "",
+    //   blank5: "",
+    // });
     setCurrentBlankIndex(1);
   }, [activeQuestionIndex]);
+
   return (
     <div
       style={{ minHeight: "100vh" }}
@@ -377,7 +299,14 @@ const Home = () => {
                   <Question
                     key={index}
                     icon={item.icon}
-                    question={item.question}
+                    inputFirst={item?.inputFirst}
+                    inputMiddle={item?.inputMiddle}
+                    input1Name={item?.input1Name}
+                    input2Name={item?.input2Name}
+                    text1={item?.text1}
+                    text2={item?.text2}
+                    inputs={item?.inputs}
+                    state={qInputs}
                     iconRight={index % 2 == 0 || index == 0}
                   />
                 ))}
@@ -392,20 +321,20 @@ const Home = () => {
                       className="text-white w-100 rounded-2 py-2 bg-warning  border-0 fw-semibold "
                       onClick={() => {
                         setActiveQuestionKeyWords(activeQuestion.keywords);
-                        setQ1Inputs({
+                        setQInputs({
                           blank1: "",
                           blank2: "",
                           blank3: "",
                           blank4: "",
                           blank5: "",
                         });
-                        setQ2Inputs({
-                          blank1: "",
-                          blank2: "",
-                          blank3: "",
-                          blank4: "",
-                          blank5: "",
-                        });
+                        // setQ2Inputs({
+                        //   blank1: "",
+                        //   blank2: "",
+                        //   blank3: "",
+                        //   blank4: "",
+                        //   blank5: "",
+                        // });
                         setCurrentBlankIndex(1);
                         setProgress(0);
                       }}
