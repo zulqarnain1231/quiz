@@ -41,12 +41,12 @@ const Question: React.FC<Props> = ({
                 readOnly
                 type="text"
               />
-              {text1}
+              <p>{text1}</p>
             </div>
           )}
           {!inputFirst && !inputMiddle && (
             <div className="d-flex align-items-center justify-content-start gap-1">
-              {text1}
+              <p>{text1}</p>
               <input
                 name={input1Name}
                 value={state[input1Name]}
@@ -57,14 +57,14 @@ const Question: React.FC<Props> = ({
           )}
           {!inputFirst && inputMiddle && (
             <div className="d-flex align-items-center justify-content-start gap-1">
-              {text1}
+              <p>{text1}</p>
               <input
                 name={input1Name}
                 value={state[input1Name]}
                 readOnly
                 type="text"
               />
-              {text2}
+              <p>{text2}</p>
             </div>
           )}
           {icon}
@@ -108,7 +108,7 @@ const Question: React.FC<Props> = ({
               : "flex-row-reverse justify-content-end"
           } align-items-center   py-4 px-2 rounded-2 shadow-lg  question my-2`}
         >
-          {text1}
+          <p>{text1}</p>
           {icon}
         </div>
       );
